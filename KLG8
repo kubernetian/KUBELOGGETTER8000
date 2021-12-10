@@ -1,0 +1,21 @@
+#!/bin/bash
+
+PS3="Which logs do you need? "
+
+pods=($(kubectl get pods -n kube-system |sed 's/\|/ /'|awk '{print $1}'))
+onlypods=() 
+
+for pod in "${pods[@]}"
+do 
+  if [[ $pod != "NAME" ]]; then 
+    onlypods+=($pod)
+  fi
+done
+
+select pod in "${onlypods[@]}"
+do
+  kubectl logs -f --tail 50 $pod -n kube-system
+  logpod=$pod
+  exit 1
+done
+

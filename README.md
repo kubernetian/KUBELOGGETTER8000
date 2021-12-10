@@ -1,2 +1,3 @@
 # KUBELOGGETTER8000
-Get logs and trail logs the easy way with this new kubernetian tool. 
+
+![KUBECONFIGSWITCHER9000](mediafiles/kubeloggetter8000.jpg)
