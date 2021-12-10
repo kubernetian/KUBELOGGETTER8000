@@ -1,3 +1,3 @@
-# KUBELOGGETTER8000
+# KubeLogGetter8000
 
-![KUBECONFIGSWITCHER9000](mediafiles/kubeloggetter8000.jpg)
+![KUBELOGGETTER8000](mediafiles/kubeloggetter8000.jpg)
