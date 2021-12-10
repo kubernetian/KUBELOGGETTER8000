@@ -1,8 +1,47 @@
 #!/bin/bash
 
+function failure {
+    case $1 in
+        1) echo "Namespace does not exist." ;;
+        *) echo "Error. Read help with --h" ;;
+    esac
+    exit $1
+}
+
+usage()
+{
+cat << EOF
+usage: $0 options
+
+This tool is used to get the logs of a certain pod, in a namespace of your choice. 
+
+OPTIONS:
+-h Show help message
+-n The namespace where you want the pod logs 
+EOF
+}
+
+if [ "$#" == "0" ]; then
+    usage
+    exit 1
+fi
+
+while getopts "n:h" OPTION
+do
+    case $OPTION in
+        n) NAMESPACE=$OPTARG  ;;
+        h) usage; exit 1 ;;
+        ?) usage; exit 1 ;;
+        *)
+            echo "Invalid option '$OPTION'. Use -h to see the valid options" >&2
+            exit 1
+            ;;
+    esac
+done
+
 PS3="Which logs do you need? "
 
-pods=($(kubectl get pods -n kube-system |sed 's/\|/ /'|awk '{print $1}'))
+pods=($(kubectl get pods -n $NAMESPACE |sed 's/\|/ /'|awk '{print $1}'))
 onlypods=() 
 
 for pod in "${pods[@]}"
@@ -14,7 +53,7 @@ done
 
 select pod in "${onlypods[@]}"
 do
-  kubectl logs -f --tail 50 $pod -n kube-system
+  kubectl logs -f --tail 50 $pod -n $NAMESPACE
   logpod=$pod
   exit 1
 done
