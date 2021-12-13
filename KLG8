@@ -54,7 +54,6 @@ done
 select pod in "${onlypods[@]}"
 do
   kubectl logs -f --tail 50 $pod -n $NAMESPACE
-  logpod=$pod
   exit 1
 done
 
