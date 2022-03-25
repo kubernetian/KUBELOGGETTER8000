@@ -45,3 +45,5 @@ Wait for the .deb package you lazy fish.
         2021-12-10 13:49:10.992752 I | mvcc: finished scheduled compaction at 7588 (took 1.440962ms)
         2021-12-10 13:53:39.195273 I | etcdserver: start to snapshot (applied: 10001, lastsnap: 0)
         2021-12-10 13:53:39.202576 I | etcdserver: saved snapshot at index 10001
+
+[:coffee:](https://www.buymeacoffee.com/kubernetian)
